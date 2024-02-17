@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header h1 {
+  text-align: center;
+}
+
+main {
+  color: white;
+}
+.section_ingreso_datos {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  color: white;
+  border: 2px solid white;
+  padding: 5px;
+  margin: 5px;
+}
+
+.section_ingreso_datos input {
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+.section_ingreso_datos input:focus,
+.obs_agregar textarea:focus {
+  outline: none;
+}
+
+#fecha {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.datos_personales {
+  border-bottom: 1px solid white;
+  padding: 3px;
+  width: 99%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datos_personales button {
+  background-color: #a4161a;
+  height: 2rem;
+  width: 100px;
+  color: white;
+  border: 1px solid black;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.datos_personales button:hover,
+.section_ingreso_datos button:hover {
+  background-color: #161a1d;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.dias_grupo {
+  width: 99%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dias_grupo button {
+  background-color: #a4161a;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  width: 50px;
+  height: 2rem;
+}
+#dia {
+  width: 50px;
+  text-align: center;
+}
+
+.eje_obs {
+  width: 99%;
+  border-top: 1px solid white;
+}
+
+.ejercicios_series {
+  position: relative;
+}
+.ejercicios_series,
+.obs_agregar {
+  border: none;
+  margin: 0;
+  padding: 5px;
+  width: 99%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.obs_agregar textarea {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 5px;
+  height: 1.5rem;
+}
+
+.obs_agregar button {
+  background-color: #a4161a;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+
+  height: 2rem;
+}
+
+#resultados {
+  background-color: black;
+  padding: 5px;
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  text-align: justify;
+}
+
+.liEjercicios {
+  list-style-type: none;
+}
+
+.liEjercicios:hover {
+  background-color: #a4161a;
+  cursor: pointer;
+}
+.h2_dia {
+  background-color: #161a1d;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+.datos_actuales {
+  display: flex;
+  flex: row;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid white;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+.fecha_nombre {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nombre_apellido {
+  font-weight: 500;
+}
+.imagen_perfil {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  box-shadow: 0px 0px 20px gray;
+}
+
+.ejercicio {
+  background-image: linear-gradient(to right, #a4161a, #161a1d);
+  width: 99%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.imagenV {
+  width: 50px;
+  height: 50px;
+}
+
+.imagenX {
+  width: 50px;
+  height: 50px;
+}
+
+.guardado {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.btns_guardado {
+  background-color: #a4161a;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  height: 2rem;
+}
+
+.btns_guardado:hover {
+  cursor: pointer;
+  background-color: #161a1d;
+}

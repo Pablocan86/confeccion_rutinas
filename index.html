@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <title>ARMADO RUTINAS</title>
+  </head>
+  <body>
+    <header>
+      <h1>ARMADO DE RUTINAS</h1>
+    </header>
+    <main>
+      <section class="section_ingreso_datos">
+        <div class="datos_personales">
+          <label for="fecha">Fecha</label>
+          <input type="date" name="fecha" id="fecha" />
+          <label for="nombre">Nombre:</label>
+          <input type="text" name="nombre" id="nombre" placeholder="Nombre" />
+          <label for="apellido">Apellido:</label>
+          <input
+            type="text"
+            id="apellido"
+            placeholder="Apellido"
+            name="apellido"
+          />
+          <label for="input-imagen">Link foto:</label>
+          <input type="text" id="input-imagen" />
+          <button id="carga_uno">Cargar</button>
+        </div>
+        <div class="dias_grupo">
+          <label for="dia">Día de entrenamiento</label>
+          <input type="number" id="dia" />
+          <label for="grupo">Grupo muscular o zona a trabajar</label>
+          <input type="text" id="grupo" placeholder="Grupo a trabajar" />
+          <button id="dia_grupo">+</button>
+        </div>
+        <div class="eje_obs">
+          <div class="ejercicios_series">
+            <label for="ejercicios">Ejercicio</label>
+            <input
+              type="text"
+              id="ejercicios"
+              placeholder="Busca el ejercicio..."
+            />
+            <div id="resultados"></div>
+            <label for="seriesyrepeticiones">Series y repeticiones: </label>
+            <input
+              type="text"
+              id="series_repeticiones"
+              placeholder="Series y repeticiones"
+            />
+          </div>
+          <div class="obs_agregar">
+            <label for="observaciones">Observaciones: </label>
+            <textarea
+              name=""
+              id="observaciones"
+              cols="30"
+              rows=""
+              placeholder="Agrega algún detalle"
+            ></textarea>
+            <button id="agregar_ejercicio">Agregar ejercicio</button>
+          </div>
+        </div>
+      </section>
+      <section id="muestra_rutina">
+        <div id="ingreso_fecha"></div>
+        <article id="ingreso_rutina"></article>
+      </section>
+      <div class="guardado">
+        <button class="btns_guardado" id="generarDocumento">
+          Crear Rutina
+        </button>
+
+        <button class="btns_guardado" id="borrarRutina">Borrar</button>
+      </div>
+    </main>
+    <footer></footer>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
