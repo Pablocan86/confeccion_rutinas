@@ -22,15 +22,28 @@ main {
   width: 99%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: baseline;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   color: white;
   border: 2px solid white;
   padding: 5px;
   margin: 5px;
 }
+.img_datos {
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+}
 
+.section_ingreso_datos div label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
 .section_ingreso_datos input {
   font-size: 1rem;
   border: none;
@@ -56,23 +69,21 @@ main {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .datos_personales button {
-  background-color: #a4161a;
-  height: 2rem;
-  width: 100px;
-  color: white;
+  background-image: url("https://www.svgrepo.com/show/291843/add.svg");
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-repeat: none;
   border: 1px solid black;
   text-decoration: none;
-  border-radius: 10px;
-  padding: 5px;
 }
 
 .datos_personales button:hover,
 .section_ingreso_datos button:hover {
-  background-color: #161a1d;
-  border: 1px solid black;
   cursor: pointer;
 }
 
@@ -80,19 +91,24 @@ main {
   width: 99%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
 
-.dias_grupo button {
-  background-color: #a4161a;
-  color: white;
+#dia_grupo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   border: 1px solid black;
-  border-radius: 10px;
-  padding: 5px;
-  width: 50px;
-  height: 2rem;
 }
+
+#dia_grupo img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
 #dia {
   width: 50px;
   text-align: center;
@@ -104,6 +120,9 @@ main {
 }
 
 .ejercicios_series {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   position: relative;
 }
 .ejercicios_series,
@@ -124,18 +143,18 @@ main {
   height: 1.5rem;
 }
 
-.obs_agregar button {
-  background-color: #a4161a;
-  color: white;
+#agregar_ejercicio {
+  border-radius: 50%;
   border: 1px solid black;
-  border-radius: 10px;
-  padding: 5px;
-
-  height: 2rem;
+  width: 30px;
+  height: 30px;
+}
+#agregar_ejercicio img {
+  width: 30px;
+  height: 30px;
 }
 
 #resultados {
-  background-color: black;
   padding: 5px;
   position: absolute;
   top: 30px;
@@ -145,6 +164,8 @@ main {
 
 .liEjercicios {
   list-style-type: none;
+  height: 100%;
+  background-color: #161a1d;
 }
 
 .liEjercicios:hover {
@@ -235,4 +256,41 @@ main {
 .btns_guardado:hover {
   cursor: pointer;
   background-color: #161a1d;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 478px) and (min-width: 310px) {
+  .datos_personales,
+  .dias_grupo,
+  .eje_obs {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .datos_personales label,
+  .dias_grupo label,
+  .eje_obs label {
+    width: 99%;
+  }
+
+  .datos_personales label input,
+  .dias_grupo label input,
+  .eje_obs label input,
+  .eje_obs label textarea {
+    width: 80%;
+  }
+
+  #carga_uno,
+  #dia_grupo {
+    margin-left: 85%;
+    width: 50px;
+    height: 50px;
+  }
+
+  #dia_grupo img {
+    width: 50px;
+    height: 50px;
+  }
 }
