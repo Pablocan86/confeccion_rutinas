@@ -8,6 +8,8 @@ const cargaUno = document.querySelector("#carga_uno");
 const dia = document.querySelector("#dia");
 const grupo = document.querySelector("#grupo");
 const buttonSumarDia = document.querySelector("#dia_grupo");
+const agregarSubtitulo = document.querySelector("#agrega_subtitulo");
+const circuito = document.querySelector("#circuito");
 const muestraRutina = document.querySelector("#muestra_rutina");
 const ingresoRutina = document.querySelector("#ingreso_rutina");
 const ejercicios = document.querySelector("#ejercicios");
@@ -111,6 +113,24 @@ buttonSumarDia.addEventListener("click", () => {
   dia.value = "";
   grupo.value = "";
 });
+agregarSubtitulo.addEventListener("click", () => {
+  ingresoRutina.innerHTML += `<div class="h3_circuito"><h3>${circuito.value.toUpperCase()}</h3><a href="#" class="btnQuitarDia" data-id="${
+    circuito.value
+  }"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a></div>`;
+  const botonesQuitar = document.querySelectorAll(".btnQuitarDia");
+  for (const boton of botonesQuitar) {
+    boton.addEventListener("click", (event) => {
+      event.preventDefault();
+      const idDia = String(boton.dataset.id);
+      const diaAEliminar = document.querySelector(`[data-id="${idDia}"]`);
+      if (diaAEliminar) {
+        ingresoRutina.removeChild(diaAEliminar.parentElement);
+      }
+    });
+  }
+
+  circuito.value = "";
+});
 
 ejercicios.addEventListener("input", function () {
   const textoBuscado = ejercicios.value.trim().toUpperCase();
@@ -135,6 +155,7 @@ ejercicios.addEventListener("input", function () {
     coincidencias.forEach((ejercicio) => {
       const itemLista = document.createElement("li");
       itemLista.classList.add("liEjercicios");
+
       itemLista.textContent = ejercicio.nombre;
       itemLista.addEventListener("click", () => {
         // Cuando se hace clic en un elemento de la lista, se completa el valor en el input
@@ -146,6 +167,35 @@ ejercicios.addEventListener("input", function () {
     });
 
     divResultados.appendChild(listaCoincidencias);
+    const listaCoincidenciasTeclado = document.querySelector(".ulEjercicios");
+    let indiceSeleccionado = -1;
+
+    ejercicios.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowUp") {
+        // Mover la selección hacia arriba en la lista
+        indiceSeleccionado = Math.max(indiceSeleccionado - 1, 0);
+        actualizarSeleccion();
+      } else if (event.key === "ArrowDown") {
+        // Mover la selección hacia abajo en la lista
+        indiceSeleccionado = Math.min(
+          indiceSeleccionado + 1,
+          listaCoincidenciasTeclado.children.length - 1
+        );
+        actualizarSeleccion();
+      }
+    });
+    // Función para actualizar la selección en la lista
+    function actualizarSeleccion() {
+      // Remover la clase 'seleccionado' de todos los elementos de la lista
+      Array.from(listaCoincidenciasTeclado.children).forEach((item, index) => {
+        if (index === indiceSeleccionado) {
+          item.classList.add("seleccionado");
+          ejercicios.value = item.textContent;
+        } else {
+          item.classList.remove("seleccionado");
+        }
+      });
+    }
   }
 });
 
@@ -311,6 +361,19 @@ document
 .imagenV {
   width: 50px;
   height: 50px;
+}
+.h3_circuito {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(167, 158, 158);
+  width: 100%;
+  padding-right: 10px;
+}
+
+.h3_circuito h3 {
+  margin-left: 45%;
 }
 
     
