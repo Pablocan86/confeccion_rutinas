@@ -159,6 +159,18 @@ main {
   align-items: center;
 }
 
+.tituloEjercicio {
+  font-weight: bolder;
+}
+
+.dato {
+  font-style: italic;
+}
+
+.ejercicio p {
+  width: 20%;
+}
+
 .obs_agregar textarea {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5px;

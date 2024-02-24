@@ -53,46 +53,44 @@ const bd = new BaseDeDatos();
 //HACER QUE SE VAYAN AGREGANDO DEBAJO TODOS LOS DATOS QUE VOY COMPLETANDO
 const imagenPerfil = document.querySelector("#input-imagen");
 
-// imagenPerfil.addEventListener("change", function (event) {
-//   // Obtener el archivo de la imagen cargada
-//   const archivo = event.target.files[0];
-
-//   if (archivo) {
-//     // Crear un objeto URL para la imagen cargada
-//     const objetoURL = URL.createObjectURL(archivo);
-
-//     // Guardar la URL del objeto para usarla más tarde
-//     sessionStorage.setItem("imagenURL", objetoURL);
-//   }
-// });
-
 cargaUno.addEventListener("click", () => {
-  const date = new Date(fecha.value);
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  let fechaFormateada = date.toLocaleDateString("es-AR", options);
-  // const imagenURL = sessionStorage.getItem("imagenURL");
+  if (nombre.value === "" && apellido.value === "") {
+    alert("No ha ingresado datos");
+  } else {
+    const date = new Date(fecha.value);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    let fechaFormateada = date.toLocaleDateString("es-AR", options);
+    // const imagenURL = sessionStorage.getItem("imagenURL");
 
-  fechaFormateada = fechaFormateada.replace(/^\w/, (c) => c.toUpperCase());
+    fechaFormateada = fechaFormateada.replace(/^\w/, (c) => c.toUpperCase());
 
-  ingresoFecha.innerHTML += `<div class="datos_actuales"><div class="fecha_nombre"><p>Fecha: ${fechaFormateada} </p>
+    ingresoFecha.innerHTML += `<div class="datos_actuales"><div class="fecha_nombre"><p>Fecha: ${fechaFormateada} </p>
   <p class="nombre_apellido"><span class="apellido_span">${apellido.value.toUpperCase()}</span>${" "}<span class="nombre_span">${nombre.value.toUpperCase()}</span> </p>
   </div><img class="imagen_perfil" src="${imagenPerfil.value}"/></div>`;
 
-  nombre.value = "";
-  apellido.value = "";
-  imagenPerfil.value = "";
+    nombre.value = "";
+    apellido.value = "";
+    imagenPerfil.value = "";
+    fecha.value = "";
+  }
 });
-
+const diasIngresados = new Set();
 buttonSumarDia.addEventListener("click", () => {
   if (dia.value > 0) {
+    if (diasIngresados.has(dia.value)) {
+      alert("Este N° de día ya ha sido ingresado");
+      return;
+    }
+    diasIngresados.add(dia.value);
+
     ingresoRutina.innerHTML += `<div class="h2_dia"><h2> DIA ${
       dia.value
-    }</h2><h2> ${grupo.value.toUpperCase()}</h2><a href="#" class="btnQuitarDia" data-id="${
+    } - </h2><h2> ${grupo.value.toUpperCase()}</h2><a href="#" class="btnQuitarDia" data-id="${
       dia.value
     }"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a></div>`;
     const botonesQuitar = document.querySelectorAll(".btnQuitarDia");
@@ -107,26 +105,30 @@ buttonSumarDia.addEventListener("click", () => {
       });
     }
   } else {
-    alert("No ingreso día");
+    alert("Número de día inválido");
   }
 
   dia.value = "";
   grupo.value = "";
 });
 agregarSubtitulo.addEventListener("click", () => {
-  ingresoRutina.innerHTML += `<div class="h3_circuito"><h3>${circuito.value.toUpperCase()}</h3><a href="#" class="btnQuitarDia" data-id="${
-    circuito.value
-  }"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a></div>`;
-  const botonesQuitar = document.querySelectorAll(".btnQuitarDia");
-  for (const boton of botonesQuitar) {
-    boton.addEventListener("click", (event) => {
-      event.preventDefault();
-      const idDia = String(boton.dataset.id);
-      const diaAEliminar = document.querySelector(`[data-id="${idDia}"]`);
-      if (diaAEliminar) {
-        ingresoRutina.removeChild(diaAEliminar.parentElement);
-      }
-    });
+  if (circuito.value === "") {
+    alert("No ha ingresado datos");
+  } else {
+    ingresoRutina.innerHTML += `<div class="h3_circuito"><h3>${circuito.value.toUpperCase()}</h3><a href="#" class="btnQuitarDia" data-id="${
+      circuito.value
+    }"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a></div>`;
+    const botonesQuitar = document.querySelectorAll(".btnQuitarDia");
+    for (const boton of botonesQuitar) {
+      boton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const idDia = String(boton.dataset.id);
+        const diaAEliminar = document.querySelector(`[data-id="${idDia}"]`);
+        if (diaAEliminar) {
+          ingresoRutina.removeChild(diaAEliminar.parentElement);
+        }
+      });
+    }
   }
 
   circuito.value = "";
@@ -203,43 +205,51 @@ ejercicios.addEventListener("input", function () {
 const ejerciciosRutina = [];
 
 agregarEjercicio.addEventListener("click", function () {
-  //Buscao por indice la coincidicencia que existe en el array de los ejercicios
-  const ejercicio = ejercicios.value.toUpperCase();
-  const indice = bd.ejerciciosBD.findIndex((el) => el.nombre === ejercicio);
+  if (ejercicios.value === " " || seriesRepeticiones.value === "") {
+    if (ejercicios.value === "") {
+      alert("No ha ingresado ejercicio");
+    } else {
+      alert("No ha ingresado series y repeticiones ");
+    }
+  } else {
+    //Buscao por indice la coincidicencia que existe en el array de los ejercicios
+    const ejercicio = ejercicios.value.toUpperCase();
+    const indice = bd.ejerciciosBD.findIndex((el) => el.nombre === ejercicio);
 
-  ingresoRutina.innerHTML += `<div class="ejercicio">
+    ingresoRutina.innerHTML += `<div class="ejercicio">
     <p class="musculoEjercicio">${bd.ejerciciosBD[indice].musculo}</p>
       <p class="tituloEjercicio">${bd.ejerciciosBD[indice].nombre}</p>
-      <p class="dato" >SERIES Y REPETICIONES: ${seriesRepeticiones.value}</p>
+      <p class="dato" >${seriesRepeticiones.value}</p>
       
-      <p>Observación: ${observaciones.value}</p>
+      <p> ${observaciones.value}</p>
       <a class="enlacesEjercicio" href="${bd.ejerciciosBD[indice].video}" target="_blank"><img class="imagenV" src="https://www.svgrepo.com/show/520494/video-course.svg" alt="icono video"/></a>
-      <a href="#" class="btnQuitar enlacesEjercicio" data-id="${bd.ejerciciosBD[indice].id}"><img class="imagenX" src="/assets/images/close.svg" alt="icono de una x"/></a>
+      <a href="#" class="btnQuitar enlacesEjercicio" data-id="${bd.ejerciciosBD[indice].id}"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a>
     </div>`;
 
-  //Necesito un botón eliminar para sacar de a un ejercicio si fuera necesario
-  const botonesQuitar = document.querySelectorAll(".btnQuitar");
-  //Recorro los botones existentes para crear el evento
+    //Necesito un botón eliminar para sacar de a un ejercicio si fuera necesario
+    const botonesQuitar = document.querySelectorAll(".btnQuitar");
+    //Recorro los botones existentes para crear el evento
 
-  for (const boton of botonesQuitar) {
-    boton.addEventListener("click", (event) => {
-      event.preventDefault();
+    for (const boton of botonesQuitar) {
+      boton.addEventListener("click", (event) => {
+        event.preventDefault();
 
-      const idEjercicio = Number(boton.dataset.id);
-      const ejercicioAEliminar = document.querySelector(
-        `[data-id="${idEjercicio}"]`
-      );
-      if (ejercicioAEliminar) {
-        ingresoRutina.removeChild(ejercicioAEliminar.parentElement);
-        // Eliminar el ejercicio de ejerciciosRutina
-        const indiceAEliminar = ejerciciosRutina.findIndex(
-          (el) => el.id === idEjercicio
+        const idEjercicio = Number(boton.dataset.id);
+        const ejercicioAEliminar = document.querySelector(
+          `[data-id="${idEjercicio}"]`
         );
-        if (indiceAEliminar !== -1) {
-          ejerciciosRutina.splice(indiceAEliminar, 1);
+        if (ejercicioAEliminar) {
+          ingresoRutina.removeChild(ejercicioAEliminar.parentElement);
+          // Eliminar el ejercicio de ejerciciosRutina
+          const indiceAEliminar = ejerciciosRutina.findIndex(
+            (el) => el.id === idEjercicio
+          );
+          if (indiceAEliminar !== -1) {
+            ejerciciosRutina.splice(indiceAEliminar, 1);
+          }
         }
-      }
-    });
+      });
+    }
   }
   ejercicios.value = "";
   seriesRepeticiones.value = "";
@@ -306,15 +316,18 @@ document
     main {
       color: white;
     }
-    .h2_dia {
+   .h2_dia {
       background-color: white;
       color: black;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
+      gap:10px; 
+      align-items: space-around;
       padding: 5px;
       margin: 5px;
     }
+
     .datos_actuales {
       display: flex;
       flex: row;
@@ -347,7 +360,6 @@ document
 }
 .ejercicio {
   background-image: linear-gradient(to right, #a4161a, #161a1d);
-  width: 99%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -358,6 +370,18 @@ document
   padding: 5px;
 }
 
+.ejercicio p{
+  width: 20%; 
+  
+}
+
+.tituloEjercicio{
+  font-weight: bolder;
+}
+
+.dato{
+  font-style: italic;
+  }
 .imagenV {
   width: 50px;
   height: 50px;
@@ -365,16 +389,21 @@ document
 .h3_circuito {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: rgb(167, 158, 158);
-  width: 100%;
-  padding-right: 10px;
+ 
+  margin: 5px;
+  
 }
 
-.h3_circuito h3 {
-  margin-left: 45%;
-}
+
+
+
+.btnQuitar{
+  display: none;
+} 
+
 
     
       </style>` +
