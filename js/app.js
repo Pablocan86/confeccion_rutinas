@@ -1,3 +1,16 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtener el elemento que deseas llenar con el contenido guardado
+  let muestraRutina = document.getElementById("muestra_rutina");
+
+  // Verificar si hay contenido guardado en el local storage
+  let contenidoGuardado = localStorage.getItem("contenido_rutina");
+
+  // Si hay contenido guardado, establecerlo como el HTML de la sección
+  if (contenidoGuardado) {
+    muestraRutina.innerHTML = contenidoGuardado;
+  }
+});
+
 //LLAMO LOS ELEMENTOS DEL DOM
 
 const fecha = document.querySelector("#fecha");
@@ -57,14 +70,17 @@ cargaUno.addEventListener("click", () => {
   if (nombre.value === "" && apellido.value === "") {
     alert("No ha ingresado datos");
   } else {
-    const date = new Date(fecha.value);
+    const fechaISO = fecha.value;
+    const fechaLocal = new Date(fechaISO);
+    fechaLocal.setDate(fechaLocal.getDate() + 1);
+
     const options = {
       weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
     };
-    let fechaFormateada = date.toLocaleDateString("es-AR", options);
+    let fechaFormateada = fechaLocal.toLocaleDateString("es-AR", options);
     // const imagenURL = sessionStorage.getItem("imagenURL");
 
     fechaFormateada = fechaFormateada.replace(/^\w/, (c) => c.toUpperCase());
@@ -80,37 +96,46 @@ cargaUno.addEventListener("click", () => {
   }
 });
 const diasIngresados = new Set();
+
 buttonSumarDia.addEventListener("click", () => {
-  if (dia.value > 0) {
-    if (diasIngresados.has(dia.value)) {
+  const diaActual = dia.value;
+  if (diaActual > 0) {
+    if (diasIngresados.has(diaActual.toString())) {
       alert("Este N° de día ya ha sido ingresado");
       return;
     }
-    diasIngresados.add(dia.value);
 
-    ingresoRutina.innerHTML += `<div class="h2_dia"><h2> DIA ${
-      dia.value
-    } - </h2><h2> ${grupo.value.toUpperCase()}</h2><a href="#" class="btnQuitarDia" data-id="${
-      dia.value
-    }"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a></div>`;
+    ingresoRutina.innerHTML += `
+    
+      <div class="h2_dia">
+        <h2> DIA ${diaActual} - </h2>
+        <h2> ${grupo.value.toUpperCase()}</h2><a href="#" class="btnQuitarDia" data-id="${diaActual}">
+        <img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a>
+      </div>
+      
+    `;
+
+    diasIngresados.add(diaActual.toString()); // Agregamos el día al conjunto de días ingresados
+
     const botonesQuitar = document.querySelectorAll(".btnQuitarDia");
     for (const boton of botonesQuitar) {
       boton.addEventListener("click", (event) => {
         event.preventDefault();
-        const idDia = Number(boton.dataset.id);
+        const idDia = boton.dataset.id.toString();
         const diaAEliminar = document.querySelector(`[data-id="${idDia}"]`);
         if (diaAEliminar) {
           ingresoRutina.removeChild(diaAEliminar.parentElement);
+          diasIngresados.delete(idDia); // Eliminamos el día del conjunto de días ingresados
         }
       });
     }
   } else {
     alert("Número de día inválido");
   }
-
   dia.value = "";
   grupo.value = "";
 });
+
 agregarSubtitulo.addEventListener("click", () => {
   if (circuito.value === "") {
     alert("No ha ingresado datos");
@@ -316,6 +341,7 @@ document
     main {
       color: white;
     }
+
    .h2_dia {
       background-color: white;
       color: black;
@@ -440,6 +466,17 @@ document
 const borrarRutnia = document.querySelector("#borrarRutina");
 
 borrarRutnia.addEventListener("click", () => {
+  localStorage.removeItem("contenido_rutina");
   ingresoFecha.innerHTML = "";
   ingresoRutina.innerHTML = "";
+  location.reload();
+});
+
+// Guardado de rutina provisorio
+
+const guardarRutina = document.querySelector("#guardarRutina");
+
+guardarRutina.addEventListener("click", () => {
+  let contenidoHTML = muestraRutina.innerHTML;
+  localStorage.setItem("contenido_rutina", contenidoHTML);
 });
