@@ -184,12 +184,12 @@ ejercicios.addEventListener("input", function () {
       itemLista.classList.add("liEjercicios");
 
       itemLista.textContent = ejercicio.nombre;
+
       itemLista.addEventListener("click", () => {
-        // Cuando se hace clic en un elemento de la lista, se completa el valor en el input
         ejercicios.value = ejercicio.nombre;
-        // Limpio la lista de resultados
         divResultados.innerHTML = "";
       });
+
       listaCoincidencias.appendChild(itemLista);
     });
 
@@ -201,6 +201,7 @@ ejercicios.addEventListener("input", function () {
       if (event.key === "ArrowUp") {
         // Mover la selección hacia arriba en la lista
         indiceSeleccionado = Math.max(indiceSeleccionado - 1, 0);
+
         actualizarSeleccion();
       } else if (event.key === "ArrowDown") {
         // Mover la selección hacia abajo en la lista
@@ -209,6 +210,18 @@ ejercicios.addEventListener("input", function () {
           listaCoincidenciasTeclado.children.length - 1
         );
         actualizarSeleccion();
+      } else if (event.key === "Enter") {
+        const seleccionado = document.querySelector(".liEjercicioSeleccionado");
+        if (seleccionado) {
+          ejercicios.value = seleccionado.textContent;
+          divResultados.innerHTML = "";
+        }
+      } else if (event.key === "Tab") {
+        const seleccionado = document.querySelector(".liEjercicioSeleccionado");
+        if (seleccionado) {
+          ejercicios.value = seleccionado.textContent;
+          divResultados.innerHTML = "";
+        }
       }
     });
     // Función para actualizar la selección en la lista
@@ -217,8 +230,10 @@ ejercicios.addEventListener("input", function () {
       Array.from(listaCoincidenciasTeclado.children).forEach((item, index) => {
         if (index === indiceSeleccionado) {
           item.classList.add("seleccionado");
+          item.classList.replace("liEjercicios", "liEjercicioSeleccionado");
           ejercicios.value = item.textContent;
         } else {
+          item.classList.replace("liEjercicioSeleccionado", "liEjercicios");
           item.classList.remove("seleccionado");
         }
       });
