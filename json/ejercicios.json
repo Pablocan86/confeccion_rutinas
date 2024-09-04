@@ -47,14 +47,14 @@
     "id": 6,
     "nombre": "PRESS INCLINADO CON BARRA",
     "musculo": "PECTORALES",
-    "video": "https://www.instagram.com/p/CeeIoSZDgM2/",
+    "video": "https://www.instagram.com/p/CeeIfRoDwqH/",
     "imagen": "pectorales.png"
   },
   {
     "id": 7,
     "nombre": "PRESS INCLINADO CON MANCUERNAS",
     "musculo": "PECTORALES",
-    "video": "https://www.instagram.com/p/CeeIfRoDwqH/",
+    "video": "https://www.instagram.com/p/CeeIoSZDgM2/",
     "imagen": "pectorales.png"
   },
   {
@@ -239,6 +239,13 @@
     "nombre": "POSTERIORES EN MAQUINA",
     "musculo": "DELTOIDES",
     "video": "https://www.instagram.com/p/CeeLrIeDBJO/",
+    "imagen": "hombros.png"
+  },
+  {
+    "id": 323,
+    "nombre": "POSTERIORES EN SENTADO",
+    "musculo": "DELTOIDES",
+    "video": "https://www.instagram.com/p/CeeMFZZjYMX/",
     "imagen": "hombros.png"
   },
   {
