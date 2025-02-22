@@ -137,7 +137,8 @@ main {
 
 .eje_obs {
   width: 99%;
-  border-top: 1px solid white;
+  border: 1px solid white;
+  margin: auto;
 }
 
 .ejercicios_series {
@@ -145,6 +146,30 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
+}
+
+.ejercicios_series label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.ejercicios_series label input {
+  height: 2rem;
+  border-radius: 5px;
+  padding-left: 5px;
+  font-size: 1rem;
+}
+
+.obs_agregar label textarea {
+  padding-left: 5px;
+  padding-top: 5px;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 5px;
+  height: 2 rem;
 }
 
 .ejercicios_series,
@@ -171,12 +196,6 @@ main {
   width: 20%;
 }
 
-.obs_agregar textarea {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 5px;
-  height: 1.5rem;
-}
-
 #agregar_ejercicio,
 #agrega_subtitulo {
   border-radius: 50%;
@@ -188,6 +207,7 @@ main {
 #agrega_subtitulo img {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 #resultados {
@@ -259,8 +279,13 @@ main {
   box-shadow: 0px 0px 20px gray;
 }
 
-.ejercicio {
+.sectionContainer {
   background-image: linear-gradient(to right, #a4161a, #161a1d);
+  width: 99%;
+  display: flex;
+}
+
+.ejercicio {
   width: 99%;
   display: flex;
   flex-direction: row;
@@ -302,8 +327,10 @@ main {
   width: 100%;
   justify-content: center;
   gap: 50px;
+  padding-top: 5px;
 }
-.btns_guardado {
+.btns_guardado,
+.btnCustomFile {
   background-color: #a4161a;
   color: white;
   border: 1px solid black;
@@ -313,10 +340,55 @@ main {
   height: 2rem;
 }
 
-.btns_guardado:hover {
+.btns_guardado:hover,
+.btnCustomFile:hover {
   cursor: pointer;
   background-color: #161a1d;
 }
+
+.editObs,
+.modificar,
+.editDia,
+.okNewDia {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.textAreaObs {
+  border-radius: 5px;
+  outline: none;
+  padding: 2px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+}
+
+.grupoMuscularSeleccionado {
+  display: flex;
+  gap: 10px;
+}
+
+.grupoMuscularSeleccionado input {
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* .btnCustomFile {
+  background-color: #a4161a;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+
+  padding: 5px;
+  height: 2rem;
+}
+
+.btnCustomFile:hover {
+  background-color: #45a049;
+} */
 
 /* RESPONSIVE */
 

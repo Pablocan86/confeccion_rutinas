@@ -97,7 +97,7 @@
             />
           </button>
         </div>
-        <div class="eje_obs">
+        <!-- <div class="eje_obs">
           <div class="ejercicios_series">
             <label for="ejercicios"
               ><img
@@ -147,17 +147,83 @@
               />
             </button>
           </div>
-        </div>
+        </div> -->
       </section>
       <section id="muestra_rutina">
         <div id="ingreso_fecha"></div>
         <article id="ingreso_rutina"></article>
       </section>
-      <div class="guardado">
-        <button class="btns_guardado" id="generarDocumento">Crear Rutina</button
-        ><button class="btns_guardado" id="guardarRutina">Guardar</button>
+      <div class="eje_obs">
+        <div class="ejercicios_series">
+          <label for="ejercicios"
+            ><img
+              class="img_datos"
+              src="https://www.svgrepo.com/show/284188/exercise-gym.svg"
+              alt="" />
+            <input
+              type="text"
+              id="ejercicios"
+              placeholder="Busca el ejercicio..."
+          /></label>
 
+          <div id="resultados"></div>
+          <label for="seriesyrepeticiones"
+            ><img
+              class="img_datos"
+              src="https://www.svgrepo.com/show/289686/checklist.svg"
+              alt=""
+            />
+            <input
+              type="text"
+              id="series_repeticiones"
+              placeholder="Series y repeticiones"
+            />
+          </label>
+        </div>
+        <div class="obs_agregar">
+          <label for="observaciones"
+            ><img
+              class="img_datos"
+              src="https://www.svgrepo.com/show/474865/high-priority.svg"
+              alt=""
+            />
+            <textarea
+              name=""
+              id="observaciones"
+              cols="30"
+              rows=""
+              placeholder="Agrega algún detalle"
+            ></textarea>
+          </label>
+
+          <button id="agregar_ejercicio">
+            <img
+              src="https://www.svgrepo.com/show/256722/folder-add.svg"
+              alt=""
+            />
+          </button>
+        </div>
+      </div>
+      <div class="guardado">
+        <button class="btns_guardado" id="generarDocumento">
+          Crear Rutina Alumno
+        </button>
+        <button class="btns_guardado" id="generarDocProf">
+          Crear rutina Profesor
+        </button>
+        <button class="btns_guardado" id="guardarRutina">
+          Guardado Provisorio
+        </button>
         <button class="btns_guardado" id="borrarRutina">Borrar</button>
+        <label for="rutinaGuardada" class="btnCustomFile">Subir archivo</label>
+        <input
+          type="file"
+          class="btns_guardado"
+          name="rutinaGuardada"
+          id="rutinaGuardada"
+          accept=".html"
+          style="display: none"
+        />
       </div>
     </main>
     <footer></footer>
