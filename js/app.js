@@ -183,20 +183,9 @@ agregarSubtitulo.addEventListener("click", () => {
   if (circuito.value === "") {
     alert("No ha ingresado datos");
   } else {
-    ingresoRutina.innerHTML += `<div class="h3_circuito"><h3>${circuito.value.toUpperCase()}</h3><a href="#" class="btnQuitarDia" data-id="${
+    ingresoRutina.innerHTML += `<div class="h3_circuito"><h3 class="textCircuito">${circuito.value.toUpperCase()}<img class="editCircuito" src="https://www.svgrepo.com/show/474672/edit-report.svg"/></h3><a href="#" class="btnQuitarDia" data-id="${
       circuito.value
     }"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a></div>`;
-    const botonesQuitar = document.querySelectorAll(".btnQuitarDia");
-    for (const boton of botonesQuitar) {
-      boton.addEventListener("click", (event) => {
-        event.preventDefault();
-        const idDia = String(boton.dataset.id);
-        const diaAEliminar = document.querySelector(`[data-id="${idDia}"]`);
-        if (diaAEliminar) {
-          ingresoRutina.removeChild(diaAEliminar.parentElement);
-        }
-      });
-    }
   }
 
   circuito.value = "";
@@ -329,44 +318,6 @@ agregarEjercicio.addEventListener("click", function () {
   ejercicios.value = "";
   seriesRepeticiones.value = "";
   observaciones.value = "";
-
-  // Habilitar Drag & Drop
-
-  // const zonas = document.querySelectorAll(".sectionContainer");
-
-  // for (const zona of zonas) {
-  //   if (zona.children.length === 0) {
-  //     zona.style.opacity = 0;
-  //   }
-  // }
-
-  // Evento que ocurre cuando se comienza a arrastrar un elemento
-  // document.addEventListener("dragstart", (event) => {
-  //   if (event.target.classList.contains("ejercicio")) {
-  //     event.dataTransfer.setData("text/plain", event.target.id);
-  //   }
-  // });
-
-  // // Evento cuando se suelta un elemento en una zona
-  // zonas.forEach((zona) => {
-  //   zona.addEventListener("dragover", (event) => {
-  //     // zona.style.background = "black";
-  //     event.preventDefault();
-  //   });
-
-  //   zona.addEventListener("drop", (event) => {
-  //     event.preventDefault();
-  //     const idEjercicio = event.dataTransfer.getData("text/plain");
-  //     const elementoMovido = document.getElementById(idEjercicio);
-  //     zona.style.backgroundImage =
-  //       "linear-gradient(to right, #a4161a, #161a1d)";
-
-  //     if (elementoMovido && zona.children.length === 0) {
-  //       elementoMovido.style.display = "flex"; // Mostrar nuevamente el elemento
-  //       zona.appendChild(elementoMovido);
-  //     }
-  //   });
-  // });
 });
 
 const idBoton = `boton-${Date.now()}`;
@@ -409,6 +360,33 @@ agregarBotonASeccionesVacias();
 
 //Delegación de eventos
 
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("editCircuito")) {
+    event.preventDefault();
+    const boton = event.target;
+
+    const divSelect = boton.closest(".h3_circuito");
+    const text = document.querySelector(".textCircuito");
+    console.log(text.textContent);
+    if (divSelect) {
+      divSelect.innerHTML = `<div class="h3_circuito">
+            <textarea class="textAreaObs">${text.textContent}</textarea>
+          <img class="modificar" src="https://www.svgrepo.com/show/434169/ok-hand.svg" alt="">
+          </div>`;
+    }
+  }
+  if (event.target.classList.contains("modificar")) {
+    event.preventDefault();
+    const boton = event.target;
+    console.log(boton);
+    const divEdit = boton.closest(".h3_circuito");
+    console.log(divEdit);
+    const textArea = divEdit.querySelector(".textAreaObs").value;
+    console.log(textArea);
+    divEdit.innerHTML = `<h3 class="textCircuito">${textArea.toUpperCase()}<img class="editCircuito" src="https://www.svgrepo.com/show/474672/edit-report.svg"/></h3><a href="#" class="btnQuitarDia" data-id="${textArea}"><img class="imagenX" src="./assets/images/close.svg" alt="icono de una x"/></a>`;
+  }
+});
+
 //Delegación de eventos para editar observaciones
 document.addEventListener("click", (event) => {
   if (event.target.classList.contains("editObs")) {
@@ -437,19 +415,25 @@ document.addEventListener("click", (event) => {
   }
 });
 
-//Delegación de eventos para quitar ejercicios
+//Función para agregar eventos para eliminar renglones
+function agregaEventoBotonEliminar(clase1, clase2) {
+  document.addEventListener("click", (event) => {
+    if (event.target.closest(clase1)) {
+      event.preventDefault();
+      const boton = event.target.closest(clase1);
+      const divSelect = boton.closest(clase2);
 
-document.addEventListener("click", (event) => {
-  if (event.target.closest(".btnQuitar")) {
-    event.preventDefault();
-    const boton = event.target.closest(".btnQuitar");
-    const divSelect = boton.closest(".ejercicio");
-
-    if (divSelect) {
-      divSelect.remove();
+      if (divSelect) {
+        divSelect.remove();
+      }
     }
-  }
-});
+  });
+}
+//Delegación para borrar ejercicio
+agregaEventoBotonEliminar(".btnQuitar", ".ejercicio");
+
+//Delegación para borrar circuito
+agregaEventoBotonEliminar(".imagenX", ".h3_circuito");
 
 // Delegación de eventos para dragstart (se activa cuando un ejercicio comienza a ser arrastrado)
 document.addEventListener("dragstart", (event) => {
@@ -483,17 +467,8 @@ document.addEventListener("drop", (event) => {
   }
 });
 
-//Delegación de evento para boton de borrar section vació
-document.addEventListener("click", (event) => {
-  if (event.target.closest(".borrarSectionVacio")) {
-    event.preventDefault();
-    const boton = event.target.closest(".borrarSectionVacio");
-    const section = boton.closest(".sectionContainer");
-    if (section) {
-      section.remove();
-    }
-  }
-});
+//Delegación de evento para boton de borrar section vacio
+agregaEventoBotonEliminar(".borrarSectionVacio", ".sectionContainer");
 
 document
   .getElementById("generarDocProf")
