@@ -119,7 +119,10 @@ buttonSumarDia.addEventListener("click", () => {
       
     `;
 
-    diasIngresados.add(diaActual.toString()); // Agregamos el día al conjunto de días ingresados
+    diasIngresados.add(diaActual.toString());
+
+    console.log(diasIngresados);
+    // Agregamos el día al conjunto de días ingresados
   } else {
     alert("Número de día inválido");
   }
@@ -329,42 +332,74 @@ agregarEjercicio.addEventListener("click", function () {
 
   // Habilitar Drag & Drop
 
-  const zonas = document.querySelectorAll(".sectionContainer");
+  // const zonas = document.querySelectorAll(".sectionContainer");
 
-  for (const zona of zonas) {
-    if (zona.children.length === 0) {
-      zona.style.background = "black";
-    }
-  }
+  // for (const zona of zonas) {
+  //   if (zona.children.length === 0) {
+  //     zona.style.opacity = 0;
+  //   }
+  // }
 
   // Evento que ocurre cuando se comienza a arrastrar un elemento
-  document.addEventListener("dragstart", (event) => {
-    if (event.target.classList.contains("ejercicio")) {
-      event.dataTransfer.setData("text/plain", event.target.id);
+  // document.addEventListener("dragstart", (event) => {
+  //   if (event.target.classList.contains("ejercicio")) {
+  //     event.dataTransfer.setData("text/plain", event.target.id);
+  //   }
+  // });
+
+  // // Evento cuando se suelta un elemento en una zona
+  // zonas.forEach((zona) => {
+  //   zona.addEventListener("dragover", (event) => {
+  //     // zona.style.background = "black";
+  //     event.preventDefault();
+  //   });
+
+  //   zona.addEventListener("drop", (event) => {
+  //     event.preventDefault();
+  //     const idEjercicio = event.dataTransfer.getData("text/plain");
+  //     const elementoMovido = document.getElementById(idEjercicio);
+  //     zona.style.backgroundImage =
+  //       "linear-gradient(to right, #a4161a, #161a1d)";
+
+  //     if (elementoMovido && zona.children.length === 0) {
+  //       elementoMovido.style.display = "flex"; // Mostrar nuevamente el elemento
+  //       zona.appendChild(elementoMovido);
+  //     }
+  //   });
+  // });
+});
+
+const idBoton = `boton-${Date.now()}`;
+
+// Función para agregar el botón en secciones vacías
+function agregarBotonASeccionesVacias() {
+  document.querySelectorAll(".sectionContainer").forEach((seccion) => {
+    if (seccion.children.length === 0) {
+      let boton = document.createElement("button");
+      boton.textContent = "Eliminar";
+      boton.className = "boton-agregar";
+      boton.dataset.id = idBoton;
+      seccion.appendChild(boton);
+
+      document.addEventListener("click", (event) => {
+        const boton = event.target.closest(".boton-agregar");
+        const section = boton.closest(".sectionContainer");
+        section.remove();
+      });
     }
   });
+}
 
-  // Evento cuando se suelta un elemento en una zona
-  zonas.forEach((zona) => {
-    zona.addEventListener("dragover", (event) => {
-      zona.style.background = "black";
-      event.preventDefault();
-    });
-
-    zona.addEventListener("drop", (event) => {
-      event.preventDefault();
-      const idEjercicio = event.dataTransfer.getData("text/plain");
-      const elementoMovido = document.getElementById(idEjercicio);
-      zona.style.backgroundImage =
-        "linear-gradient(to right, #a4161a, #161a1d)";
-
-      if (elementoMovido && zona.children.length === 0) {
-        elementoMovido.style.display = "flex"; // Mostrar nuevamente el elemento
-        zona.appendChild(elementoMovido);
-      }
-    });
-  });
+// Observador para detectar cambios en el DOM
+const observer = new MutationObserver(() => {
+  agregarBotonASeccionesVacias();
 });
+
+// Observa el `body` por cambios en los nodos
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Ejecuta la función por si ya hay secciones vacías al cargar la página
+agregarBotonASeccionesVacias();
 
 //Delegación de eventos
 
@@ -421,7 +456,7 @@ document.addEventListener("dragstart", (event) => {
 document.addEventListener("dragover", (event) => {
   if (event.target.classList.contains("sectionContainer")) {
     event.preventDefault(); // Necesario para permitir el drop
-    event.target.style.background = "black";
+    // event.target.style.background = "black";
   }
 });
 
@@ -434,9 +469,22 @@ document.addEventListener("drop", (event) => {
     event.target.style.backgroundImage =
       "linear-gradient(to right, #a4161a, #161a1d)";
 
-    if (elementoMovido && event.target.children.length === 0) {
+    if (elementoMovido) {
       elementoMovido.style.display = "flex"; // Mostrar nuevamente el elemento
+      event.target.innerHTML = "";
       event.target.appendChild(elementoMovido);
+    }
+  }
+});
+
+//Delegación de evento para boton de borrar section vació
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".borrarSectionVacio")) {
+    event.preventDefault();
+    const boton = event.target.closest(".borrarSectionVacio");
+    const section = boton.closest(".sectionContainer");
+    if (section) {
+      section.remove();
     }
   }
 });
