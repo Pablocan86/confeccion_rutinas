@@ -376,6 +376,33 @@ main {
   padding: 5px;
 }
 
+.boton-eliminar {
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.boton-eliminar:hover {
+  background-color: rgb(241, 54, 54);
+  color: white;
+}
+
+.tiene-boton {
+  width: 99%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
 /* .btnCustomFile {
   background-color: #a4161a;
   color: white;

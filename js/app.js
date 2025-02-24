@@ -377,14 +377,20 @@ function agregarBotonASeccionesVacias() {
     if (seccion.children.length === 0) {
       let boton = document.createElement("button");
       boton.textContent = "Eliminar";
-      boton.className = "boton-agregar";
+      boton.className = "boton-eliminar";
       boton.dataset.id = idBoton;
       seccion.appendChild(boton);
+      seccion.classList.remove("ejercicio");
+      seccion.classList.add("tiene-boton");
 
       document.addEventListener("click", (event) => {
-        const boton = event.target.closest(".boton-agregar");
-        const section = boton.closest(".sectionContainer");
-        section.remove();
+        const boton = event.target.closest(".boton-eliminar");
+        if (boton) {
+          const section = boton.closest(".sectionContainer");
+          if (section) {
+            section.remove();
+          }
+        }
       });
     }
   });
