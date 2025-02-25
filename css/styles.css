@@ -79,6 +79,22 @@ main {
   flex-wrap: wrap;
 }
 
+#input-imagen {
+  display: none;
+}
+
+#labelImagen {
+  background-color: #a4161a;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#labelImagen:hover {
+  background-color: #161a1d;
+  color: whitesmoke;
+}
+
 .datos_personales button {
   background-image: url("https://www.svgrepo.com/show/291843/add.svg");
   width: 30px;
@@ -311,6 +327,18 @@ main {
   margin-left: 45%;
 }
 
+.h3_circuito textarea {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30%;
+  font-size: 1rem;
+  padding: 5px;
+}
+
+.h3_circuito .modificar {
+  margin-right: 30%;
+}
+
 .imagenV {
   width: 50px;
   height: 50px;
@@ -351,9 +379,29 @@ main {
 .editDia,
 .okNewDia,
 .editCircuito {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+}
+
+.editCircuito {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all 0.5ms;
+}
+
+.editCircuito:hover {
+  width: 35px;
+  height: 35px;
+}
+
+.textCircuito {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
 }
 
 .textAreaObs {

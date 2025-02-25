@@ -65,7 +65,12 @@ class BaseDeDatos {
 const bd = new BaseDeDatos();
 //HACER QUE SE VAYAN AGREGANDO DEBAJO TODOS LOS DATOS QUE VOY COMPLETANDO
 const imagenPerfil = document.querySelector("#input-imagen");
+const labelImagen = document.querySelector("#labelImagen");
 
+imagenPerfil.addEventListener("change", (event) => {
+  let nameFile = event.target.files[0].name;
+  labelImagen.textContent = `Archivo: ${nameFile}`;
+});
 cargaUno.addEventListener("click", () => {
   if (nombre.value === "" && apellido.value === "") {
     alert("No ha ingresado datos");
@@ -85,14 +90,23 @@ cargaUno.addEventListener("click", () => {
 
     fechaFormateada = fechaFormateada.replace(/^\w/, (c) => c.toUpperCase());
 
-    ingresoFecha.innerHTML += `<div class="datos_actuales"><div class="fecha_nombre"><p>Fecha: ${fechaFormateada} </p>
-  <p class="nombre_apellido"><span class="apellido_span">${apellido.value.toUpperCase()}</span>${" "}<span class="nombre_span">${nombre.value.toUpperCase()}</span> </p>
-  </div><img class="imagen_perfil" src="${imagenPerfil.value}"/></div>`;
+    if (imagenPerfil.files.length > 0) {
+      let archivo = imagenPerfil.files[0];
+      let reader = new FileReader();
 
-    nombre.value = "";
-    apellido.value = "";
-    imagenPerfil.value = "";
-    fecha.value = "";
+      reader.onload = function (event) {
+        imagen = event.target.result;
+        ingresoFecha.innerHTML += `<div class="datos_actuales"><div class="fecha_nombre"><p>Fecha: ${fechaFormateada} </p>
+      <p class="nombre_apellido"><span class="apellido_span">${apellido.value.toUpperCase()}</span>${" "}<span class="nombre_span">${nombre.value.toUpperCase()}</span> </p>
+      </div><img src="${imagen}" class="imagen_perfil" /></div>`;
+
+        nombre.value = "";
+        apellido.value = "";
+        imagenPerfil.value = "";
+        fecha.value = "";
+      };
+      reader.readAsDataURL(archivo);
+    }
   }
 });
 const diasIngresados = new Set();
@@ -670,8 +684,14 @@ document
     const imagenesEdit = nuevaSeccion.querySelectorAll(".editObs");
     const sections = nuevaSeccion.querySelectorAll(".sectionContainer");
     const editDias = nuevaSeccion.querySelectorAll(".editDia");
+    const editCircuito = nuevaSeccion.querySelectorAll(".editCircuito");
 
     // Filtrar las imágenes que no sean close.svg y eliminarlas
+    for (let i = 0; i < editCircuito.length; i++) {
+      if (editCircuito[i].src.includes("edit-report.svg")) {
+        editCircuito[i].parentNode.removeChild(editCircuito[i]);
+      }
+    }
     for (let i = 0; i < imagenes.length; i++) {
       if (imagenes[i].src.includes("close.svg")) {
         imagenes[i].parentNode.removeChild(imagenes[i]);
@@ -685,7 +705,7 @@ document
     }
 
     for (let i = 0; i < sections.length; i++) {
-      if (sections[i].children.length === 0) {
+      if (sections[i].querySelector(".boton-eliminar")) {
         sections[i].remove();
       }
     }
