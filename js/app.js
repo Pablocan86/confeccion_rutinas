@@ -484,23 +484,27 @@ document.addEventListener("drop", (event) => {
 //Delegación de evento para boton de borrar section vacio
 agregaEventoBotonEliminar(".borrarSectionVacio", ".sectionContainer");
 
-document
-  .getElementById("generarDocProf")
-  .addEventListener("click", function () {
-    // Obtener la sección muestra_rutina
-    const muestraRutina = document.getElementById("muestra_rutina");
+const guardadoProfesor = document.getElementById("generarDocProf");
 
-    // Clonar la sección para manipularla sin afectar el DOM original
-    const nuevaSeccion = muestraRutina.cloneNode(true);
+aviso(
+  guardadoProfesor,
+  "Guarda el archivo en .html para que lo puedas volver a usar"
+);
+guardadoProfesor.addEventListener("click", function () {
+  // Obtener la sección muestra_rutina
+  const muestraRutina = document.getElementById("muestra_rutina");
 
-    const rutinaProfesorNueva =
-      "<!DOCTYPE html>" +
-      "<html lang='en'>" +
-      "<head>" +
-      "<meta charset='UTF-8'>" +
-      "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
-      "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
-      `<title> 
+  // Clonar la sección para manipularla sin afectar el DOM original
+  const nuevaSeccion = muestraRutina.cloneNode(true);
+
+  const rutinaProfesorNueva =
+    "<!DOCTYPE html>" +
+    "<html lang='en'>" +
+    "<head>" +
+    "<meta charset='UTF-8'>" +
+    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+    "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
+    `<title> 
       ${apellido.value} 
       ${nombre.value} 
       </title>
@@ -644,8 +648,8 @@ document
 
     
       </style>` +
-      "</head>" +
-      `<body> 
+    "</head>" +
+    `<body> 
       <header>
       <img class="logo_shadow" src="https://i.ibb.co/4WsHDQX/Artboard-1-copy-8.png"/><div><h1>RUTINA DE ENTRENAMIENTO</h1></header>
       <main>
@@ -657,73 +661,104 @@ document
       </body> 
       </html>`;
 
-    const apellidoSpan = document.querySelector(".apellido_span");
-    const nombreSpan = document.querySelector(".nombre_span");
+  const apellidoSpan = document.querySelector(".apellido_span");
+  const nombreSpan = document.querySelector(".nombre_span");
 
-    const newBlob = new Blob([rutinaProfesorNueva], { type: "text/html" });
+  const newBlob = new Blob([rutinaProfesorNueva], { type: "text/html" });
 
-    const newLink = document.createElement("a");
-    newLink.href = window.URL.createObjectURL(newBlob);
-    newLink.download = `rutina_correcciones_${apellidoSpan.textContent.toLowerCase()}_${nombreSpan.textContent.toLocaleLowerCase()}.html`;
+  const newLink = document.createElement("a");
+  newLink.href = window.URL.createObjectURL(newBlob);
+  newLink.download = `rutina_correcciones_${apellidoSpan.textContent.toLowerCase()}_${nombreSpan.textContent.toLocaleLowerCase()}.html`;
 
-    // Simular clic en el enlace para iniciar la descarga
-    newLink.click();
+  // Simular clic en el enlace para iniciar la descarga
+  newLink.click();
+});
+
+//Funcion para agregar carteles dinamicos
+
+function aviso(elemento, texto) {
+  elemento.addEventListener("mouseover", () => {
+    const p = document.createElement("p");
+    p.className = "infoGuardado";
+    p.textContent = texto;
+    elemento.style.position = "relative ";
+    elemento.appendChild(p);
+    elemento.addEventListener("mouseout", () => {
+      const pAviso = document.querySelector(".infoGuardado");
+      if (pAviso) {
+        pAviso.remove();
+      }
+    });
   });
+}
 
-document
-  .getElementById("generarDocumento")
-  .addEventListener("click", function () {
-    // Obtener la sección muestra_rutina
-    const muestraRutina = document.getElementById("muestra_rutina");
+const generarDocumento = document.getElementById("generarDocumento");
 
-    // Clonar la sección para manipularla sin afectar el DOM original
-    const nuevaSeccion = muestraRutina.cloneNode(true);
+aviso(generarDocumento, "Guarda documento en .html para convertilo a pdf");
+// generarDocumento.addEventListener("mouseover", () => {
+//   const p = document.createElement("p");
+//   p.className = "infoGuardadoAlumno";
+//   p.textContent = "Guarda documento html para luego guardar en pdf";
+//   generarDocumento.appendChild(p);
+//   generarDocumento.addEventListener("mouseout", () => {
+//     const pAviso = document.querySelector(".infoGuardadoAlumno");
+//     if (pAviso) {
+//       pAviso.remove();
+//     }
+//   });
+// });
+generarDocumento.addEventListener("click", function () {
+  // Obtener la sección muestra_rutina
+  const muestraRutina = document.getElementById("muestra_rutina");
 
-    // Obtener todas las imágenes dentro de la nueva sección
-    const imagenes = nuevaSeccion.querySelectorAll(".imagenX");
-    const imagenesEdit = nuevaSeccion.querySelectorAll(".editObs");
-    const sections = nuevaSeccion.querySelectorAll(".sectionContainer");
-    const editDias = nuevaSeccion.querySelectorAll(".editDia");
-    const editCircuito = nuevaSeccion.querySelectorAll(".editCircuito");
+  // Clonar la sección para manipularla sin afectar el DOM original
+  const nuevaSeccion = muestraRutina.cloneNode(true);
 
-    // Filtrar las imágenes que no sean close.svg y eliminarlas
-    for (let i = 0; i < editCircuito.length; i++) {
-      if (editCircuito[i].src.includes("edit-report.svg")) {
-        editCircuito[i].parentNode.removeChild(editCircuito[i]);
-      }
+  // Obtener todas las imágenes dentro de la nueva sección
+  const imagenes = nuevaSeccion.querySelectorAll(".imagenX");
+  const imagenesEdit = nuevaSeccion.querySelectorAll(".editObs");
+  const sections = nuevaSeccion.querySelectorAll(".sectionContainer");
+  const editDias = nuevaSeccion.querySelectorAll(".editDia");
+  const editCircuito = nuevaSeccion.querySelectorAll(".editCircuito");
+
+  // Filtrar las imágenes que no sean close.svg y eliminarlas
+  for (let i = 0; i < editCircuito.length; i++) {
+    if (editCircuito[i].src.includes("edit-report.svg")) {
+      editCircuito[i].parentNode.removeChild(editCircuito[i]);
     }
-    for (let i = 0; i < imagenes.length; i++) {
-      if (imagenes[i].src.includes("close.svg")) {
-        imagenes[i].parentNode.removeChild(imagenes[i]);
-      }
+  }
+  for (let i = 0; i < imagenes.length; i++) {
+    if (imagenes[i].src.includes("close.svg")) {
+      imagenes[i].parentNode.removeChild(imagenes[i]);
     }
+  }
 
-    for (let i = 0; i < imagenesEdit.length; i++) {
-      if (imagenesEdit[i].src.includes("edit-report.svg")) {
-        imagenesEdit[i].parentNode.removeChild(imagenesEdit[i]);
-      }
+  for (let i = 0; i < imagenesEdit.length; i++) {
+    if (imagenesEdit[i].src.includes("edit-report.svg")) {
+      imagenesEdit[i].parentNode.removeChild(imagenesEdit[i]);
     }
+  }
 
-    for (let i = 0; i < sections.length; i++) {
-      if (sections[i].querySelector(".boton-eliminar")) {
-        sections[i].remove();
-      }
+  for (let i = 0; i < sections.length; i++) {
+    if (sections[i].querySelector(".boton-eliminar")) {
+      sections[i].remove();
     }
+  }
 
-    for (let i = 0; i < editDias.length; i++) {
-      if (editDias[i].src.includes("edit-report.svg")) {
-        editDias[i].parentNode.removeChild(editDias[i]);
-      }
+  for (let i = 0; i < editDias.length; i++) {
+    if (editDias[i].src.includes("edit-report.svg")) {
+      editDias[i].parentNode.removeChild(editDias[i]);
     }
-    // Crear un nuevo documento HTML con el contenido filtrado
-    const rutinaAlumnoNueva =
-      "<!DOCTYPE html>" +
-      "<html lang='en'>" +
-      "<head>" +
-      "<meta charset='UTF-8'>" +
-      "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
-      "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
-      `<title> 
+  }
+  // Crear un nuevo documento HTML con el contenido filtrado
+  const rutinaAlumnoNueva =
+    "<!DOCTYPE html>" +
+    "<html lang='en'>" +
+    "<head>" +
+    "<meta charset='UTF-8'>" +
+    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+    "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
+    `<title> 
       ${apellido.value} 
       ${nombre.value} 
       </title>
@@ -867,8 +902,8 @@ document
 
     
       </style>` +
-      "</head>" +
-      `<body> 
+    "</head>" +
+    `<body> 
       <header>
       <img class="logo_shadow" src="https://i.ibb.co/4WsHDQX/Artboard-1-copy-8.png"/><div><h1>RUTINA DE ENTRENAMIENTO</h1></header>
       <main>
@@ -880,24 +915,26 @@ document
       </body> 
       </html>`;
 
-    const apellidoSpan = document.querySelector(".apellido_span");
-    const nombreSpan = document.querySelector(".nombre_span");
+  const apellidoSpan = document.querySelector(".apellido_span");
+  const nombreSpan = document.querySelector(".nombre_span");
 
-    // Convertir el contenido a un Blob
-    const blob = new Blob([rutinaAlumnoNueva], { type: "text/html" });
+  // Convertir el contenido a un Blob
+  const blob = new Blob([rutinaAlumnoNueva], { type: "text/html" });
 
-    // Crear un enlace para la descarga
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
-    link.download = `rutina_${apellidoSpan.textContent.toLowerCase()}_${nombreSpan.textContent.toLowerCase()}.html`;
+  // Crear un enlace para la descarga
+  const link = document.createElement("a");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = `rutina_${apellidoSpan.textContent.toLowerCase()}_${nombreSpan.textContent.toLowerCase()}.html`;
 
-    // Simular clic en el enlace para iniciar la descarga
-    link.click();
-  });
+  // Simular clic en el enlace para iniciar la descarga
+  link.click();
+});
 
 //Hago que el button eliminar borre todo el contenido de la rutina
 
 const borrarRutina = document.querySelector("#borrarRutina");
+
+aviso(borrarRutina, "Borra todo lo agregado en pantalla");
 
 borrarRutina.addEventListener("click", () => {
   localStorage.removeItem("contenido_rutina");
@@ -910,6 +947,7 @@ borrarRutina.addEventListener("click", () => {
 
 const guardarRutina = document.querySelector("#guardarRutina");
 
+aviso(guardarRutina, "Guarda todo lo que vas agregando en pantalla");
 guardarRutina.addEventListener("click", () => {
   let contenidoHTML = muestraRutina.innerHTML;
   localStorage.setItem("contenido_rutina", contenidoHTML);
@@ -917,7 +955,10 @@ guardarRutina.addEventListener("click", () => {
 
 const rutinaGuardada = document.querySelector("#rutinaGuardada");
 const label = document.querySelector(".btnCustomFile");
-
+aviso(
+  label,
+  "Carga rutina guardad como profe, una vez agregado en pantalla fecha, datos y foto"
+);
 rutinaGuardada.addEventListener("change", function (event) {
   const archivo = event.target.files[0];
 
