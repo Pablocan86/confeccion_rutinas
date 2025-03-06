@@ -355,7 +355,7 @@ main {
   flex-direction: row;
   width: 100%;
   justify-content: center;
-  gap: 50px;
+  gap: 100px;
   padding-top: 5px;
 }
 
@@ -365,18 +365,29 @@ main {
 .infoGuardado {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   font-size: 1rem;
   background-color: rgba(0, 0, 0, 0.397);
   width: auto;
   height: auto;
-  padding: 20px;
+  padding: 5px;
   backdrop-filter: blur(10px);
   left: 10px;
   bottom: 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px white;
+}
+
+.infoGuardado span {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.infoGuardado p {
+  text-align: center;
+  padding: 5px;
 }
 
 .btns_guardado,

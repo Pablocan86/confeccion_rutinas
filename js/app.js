@@ -488,7 +488,7 @@ const guardadoProfesor = document.getElementById("generarDocProf");
 
 aviso(
   guardadoProfesor,
-  "Guarda el archivo en .html para que lo puedas volver a usar"
+  "Guarda el archivo en .html para que lo puedas volver a usar."
 );
 guardadoProfesor.addEventListener("click", function () {
   // Obtener la sección muestra_rutina
@@ -678,12 +678,13 @@ guardadoProfesor.addEventListener("click", function () {
 
 function aviso(elemento, texto) {
   elemento.addEventListener("mouseover", () => {
-    const p = document.createElement("p");
-    p.className = "infoGuardado";
-    p.textContent = texto;
+    const div = document.createElement("div");
+    div.className = "infoGuardado";
+    div.innerHTML = `<span>🚨</span>
+    <p>${texto}</p>`;
     elemento.style.position = "relative ";
-    elemento.appendChild(p);
-    elemento.addEventListener("mouseout", () => {
+    elemento.appendChild(div);
+    elemento.addEventListener("mouseleave", () => {
       const pAviso = document.querySelector(".infoGuardado");
       if (pAviso) {
         pAviso.remove();
@@ -694,7 +695,7 @@ function aviso(elemento, texto) {
 
 const generarDocumento = document.getElementById("generarDocumento");
 
-aviso(generarDocumento, "Guarda documento en .html para convertilo a pdf");
+aviso(generarDocumento, "Guarda documento en .html para convertilo a .pdf.");
 // generarDocumento.addEventListener("mouseover", () => {
 //   const p = document.createElement("p");
 //   p.className = "infoGuardadoAlumno";
@@ -934,7 +935,7 @@ generarDocumento.addEventListener("click", function () {
 
 const borrarRutina = document.querySelector("#borrarRutina");
 
-aviso(borrarRutina, "Borra todo lo agregado en pantalla");
+aviso(borrarRutina, "Borra todo lo agregado en pantalla.");
 
 borrarRutina.addEventListener("click", () => {
   localStorage.removeItem("contenido_rutina");
@@ -947,7 +948,7 @@ borrarRutina.addEventListener("click", () => {
 
 const guardarRutina = document.querySelector("#guardarRutina");
 
-aviso(guardarRutina, "Guarda todo lo que vas agregando en pantalla");
+aviso(guardarRutina, "Guarda todo lo que vas agregando en pantalla.");
 guardarRutina.addEventListener("click", () => {
   let contenidoHTML = muestraRutina.innerHTML;
   localStorage.setItem("contenido_rutina", contenidoHTML);
@@ -957,7 +958,7 @@ const rutinaGuardada = document.querySelector("#rutinaGuardada");
 const label = document.querySelector(".btnCustomFile");
 aviso(
   label,
-  "Carga rutina guardad como profe, una vez agregado en pantalla fecha, datos y foto"
+  "Carga rutina guardada como profe, una vez agregado en pantalla fecha, datos y foto."
 );
 rutinaGuardada.addEventListener("change", function (event) {
   const archivo = event.target.files[0];
