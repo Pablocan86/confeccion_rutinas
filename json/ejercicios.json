@@ -156,6 +156,20 @@
     "video": "https://www.instagram.com/p/CeeJ6pOj8Cj/",
     "imagen": "espalda.png"
   },
+   {
+    "id": 181,
+    "nombre": "REMO T AGARRE ABIERTO",
+    "musculo": "DORSALES",
+    "video": "https://www.youtube.com/shorts/uLr8HcW_7ig",
+    "imagen": "espalda.png"
+  },
+    {
+    "id": 182,
+    "nombre": "REMO T AGARRE CERRADO",
+    "musculo": "DORSALES",
+    "video": "https://www.youtube.com/shorts/pErwpZxEE8U",
+    "imagen": "espalda.png"
+  },
   {
     "id": 19,
     "nombre": "TIRON INVERTIDO UNA MANO",
@@ -919,6 +933,13 @@
     "nombre": "ARRANQUES ACOSTADA EN POLEA",
     "musculo": "GLUTEOS",
     "video": "https://www.youtube.com/shorts/xDGx_crap2E",
+    "imagen": "gluteos.png"
+  },
+   {
+    "id": 986,
+    "nombre": "FROGGY PUMPS",
+    "musculo": "GLUTEOS",
+    "video": "https://www.youtube.com/shorts/y-yo8NBhs0k",
     "imagen": "gluteos.png"
   },
   {
