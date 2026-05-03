@@ -64,6 +64,13 @@
     "video": "https://www.instagram.com/p/CeeIDoQj7QI/",
     "imagen": "pectorales.png"
   },
+    {
+    "id": 81,
+    "nombre": "PRESS DECLINADO CON MANCUERNAS",
+    "musculo": "PECTORALES",
+    "video": "https://www.youtube.com/shorts/Ir9YpOnR2Qo",
+    "imagen": "pectorales.png"
+  },
   {
     "id": 9,
     "nombre": "PRESS PLANO CON MANCUERNAS",
@@ -76,6 +83,13 @@
     "nombre": "FLEXIONES DE BRAZO",
     "musculo": "PECTORALES",
     "video": "https://www.instagram.com/p/CfCjm3qDOXW/",
+    "imagen": "pectorales.png"
+  },
+   {
+    "id": 101,
+    "nombre": "FLEXIONES DE BRAZO CON APOYO EN BANCO (MANOS)",
+    "musculo": "PECTORALES",
+    "video": "https://www.youtube.com/shorts/2x7C5GoKRcg",
     "imagen": "pectorales.png"
   },
   {
@@ -156,6 +170,13 @@
     "video": "https://www.instagram.com/p/CeeKWNmjRCM/",
     "imagen": "espalda.png"
   },
+    {
+    "id": 201,
+    "nombre": "TIRON INVERTIDO CON TRIANGULO",
+    "musculo": "DORSALES",
+    "video": "https://www.youtube.com/shorts/ma8zuqbeI0U",
+    "imagen": "espalda.png"
+  },
   {
     "id": 0,
     "nombre": "O",
@@ -187,9 +208,30 @@
 
   {
     "id": 24,
-    "nombre": "FRONTALES CON POLEA",
+    "nombre": "FRONTALES EN POLEA UNILATERAL",
     "musculo": "DELTOIDES",
     "video": "https://www.instagram.com/p/CfClS8NDPFN/",
+    "imagen": "hombros.png"
+  },
+   {
+    "id": 241,
+    "nombre": "FRONTALES EN POLEA CON BARRA CORTA",
+    "musculo": "DELTOIDES",
+    "video": "https://www.youtube.com/shorts/AJ147wzeIfQ",
+    "imagen": "hombros.png"
+  },
+  {
+    "id": 242,
+    "nombre": "FRONTALES EN POLEA CON SOGA",
+    "musculo": "DELTOIDES",
+    "video": "https://www.youtube.com/shorts/0YmiQlho0MM",
+    "imagen": "hombros.png"
+  },
+    {
+    "id": 243,
+    "nombre": "FRONTALES EN BANCO A 45° CON MANCUERNAS",
+    "musculo": "DELTOIDES",
+    "video": "https://www.youtube.com/shorts/tdn5naBR7rQ",
     "imagen": "hombros.png"
   },
   {
@@ -248,11 +290,25 @@
     "video": "https://www.instagram.com/p/CeeMFZZjYMX/",
     "imagen": "hombros.png"
   },
+    {
+    "id": 324,
+    "nombre": "POSTERIORES EN POLEA UNILATERAL",
+    "musculo": "DELTOIDES",
+    "video": "https://www.youtube.com/watch?v=tMIPMiqiVhQ",
+    "imagen": "hombros.png"
+  },
   {
     "id": 32,
-    "nombre": "POSTERIORES EN POLEA",
+    "nombre": "POSTERIORES EN POLEA CRUZADO",
     "musculo": "DELTOIDES",
     "video": "https://www.instagram.com/p/CeeLyj1jEw7/",
+    "imagen": "hombros.png"
+  },
+    {
+    "id": 331,
+    "nombre": "FACE PULL EN POLEA",
+    "musculo": "DELTOIDES",
+    "video": "https://www.youtube.com/shorts/IeOqdw9WI90",
     "imagen": "hombros.png"
   },
   {
@@ -411,6 +467,13 @@
     "imagen": "biceps.png"
   },
   {
+    "id": 511,
+    "nombre": "CURL BICEPS BANCO 45°",
+    "musculo": "BICEPS",
+    "video": "https://www.youtube.com/shorts/fXFN8_1Bh6k",
+    "imagen": "biceps.png"
+  },
+  {
     "id": 0,
     "nombre": "",
     "musculo": "TRICEPS",
@@ -429,6 +492,27 @@
     "nombre": "FONDOS ENTRE BANCOS",
     "musculo": "TRICEPS",
     "video": "https://www.instagram.com/p/CeeO2hsDlvD/",
+    "imagen": "triceps.png"
+  },
+   {
+    "id": 531,
+    "nombre": "TRICEPS EXTENSIONES UNILATERALES CON AGARRE PRONADO",
+    "musculo": "TRICEPS",
+    "video": "https://www.youtube.com/shorts/C3gnytwZNls",
+    "imagen": "triceps.png"
+  },
+     {
+    "id": 532,
+    "nombre": "TRICEPS EXTENSIONES UNILATERALES CON AGARRE NEUTRO",
+    "musculo": "TRICEPS",
+    "video": "https://www.youtube.com/shorts/hip11n3QXzU",
+    "imagen": "triceps.png"
+  },
+   {
+    "id": 533,
+    "nombre": "TRICEPS EXTENSIONES UNILATERALES CON AGARRE SUPINO",
+    "musculo": "TRICEPS",
+    "video": "https://www.youtube.com/shorts/F6Eto9EuNoI",
     "imagen": "triceps.png"
   },
   {
@@ -807,6 +891,34 @@
     "nombre": "ABDUCCION (PATADA) CRUZADA EN POLEA",
     "musculo": "GLUTEOS",
     "video": "https://www.youtube.com/shorts/1p1nU8CB98k",
+    "imagen": "gluteos.png"
+  },
+  {
+    "id": 982,
+    "nombre": "ABDUCCION (PATADA) CRUZADA CON TOBILLERA",
+    "musculo": "GLUTEOS",
+    "video": "https://www.youtube.com/shorts/1p1nU8CB98k",
+    "imagen": "gluteos.png"
+  },
+    {
+    "id": 983,
+    "nombre": "PATADA ESCORPION",
+    "musculo": "GLUTEOS",
+    "video": "https://www.youtube.com/shorts/H0xHW7MaLA0",
+    "imagen": "gluteos.png"
+  },
+     {
+    "id": 984,
+    "nombre": "PATADA ESCORPION CON BANDA ELASTICA",
+    "musculo": "GLUTEOS",
+    "video": "https://www.youtube.com/watch?v=Ao2ejNeUuyg",
+    "imagen": "gluteos.png"
+  },
+       {
+    "id": 985,
+    "nombre": "ARRANQUES ACOSTADA EN POLEA",
+    "musculo": "GLUTEOS",
+    "video": "https://www.youtube.com/shorts/xDGx_crap2E",
     "imagen": "gluteos.png"
   },
   {
